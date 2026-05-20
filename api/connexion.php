@@ -31,7 +31,8 @@ class Connexion{
       }
       catch(Exception $e){
          echo('Erreur : ' . $e->getMessage());
-      } $bdd=null;
+      }
+        $wadie=null;
    }
 }
 ?>

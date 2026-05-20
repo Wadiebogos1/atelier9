@@ -204,50 +204,35 @@ session_start();
     <!-- PHP Output Results Container -->
     <?php
     if(!empty($_POST["Enregistrer"])){
-        
-        $Nom = htmlspecialchars($_POST['nom']);
-        $Prenom = htmlspecialchars($_POST['prenom']);
-        $Ville = htmlspecialchars($_POST['ville']);
-        
+        //-----------------------
+        $Nom =$_POST['nom'];
+        $Prenom = $_POST['prenom'];
+        $Ville = $_POST['ville'];
+        //----------------------
         $Photo_tmp = $_FILES['photo']['tmp_name'];
         $nomph = $_FILES['photo']['name'];
         $des = "images/" . basename($nomph);
+        //----------------------
             $r=Students::AddStudent($Nom,$Prenom,$Ville,$Photo_tmp,$nomph);
             if($r!=0){
         echo "Merci de votre inscription !!!";
-    }
-        // Silent file move handling
-        if(move_uploaded_file($Photo_tmp, $des)) {
-            echo '<section class="mb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-md-10 col-lg-6">
-                                <div class="table-responsive custom-table">
-                                    <table class="table table-hover align-middle mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="p-3">Photo</th>
-                                                <th scope="col" class="p-3">Nom</th>
-                                                <th scope="col" class="p-3">Prénom</th>
-                                                <th scope="col" class="p-3">Ville</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="p-3">
-                                                    <img src="images/'. $nomph .'" width="60" height="60" class="rounded-circle object-fit-cover shadow-sm" alt="Profile">
-                                                </td>
-                                                <td class="p-3 fw-semibold text-dark">'. $Nom .'</td>
-                                                <td class="p-3 text-secondary">'. $Prenom .'</td>
-                                                <td class="p-3 text-secondary">'. $Ville .'</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </section>';
+            }
+              // Silent file move handling
+            if(move_uploaded_file($Photo_tmp,$des)) {
+                echo"<table>";
+                echo"<tr>";
+                echo"<td>NOM</td>";
+                echo"<td>PRENOM</td>";
+                echo"<tr><td>VILLE</td>";
+                echo"<td>PHOTO</td>";
+                echo"<tr>";
+                echo"<tr>";
+                echo"<td>'$Nom'</td>";
+                echo"<td>'$Prenom'</td>";
+                echo"<tr><td>'$Ville'</td>";
+                echo"<td>'$des'</td>";
+                echo"<tr>";
+                echo"</table>";
         }
     }
     ?>

@@ -23,7 +23,7 @@ class Students{
 
     static function SearchStudents($ville){
         $act="select * from student where ville='$ville'";
-        $cur=Connexion::selection(($act));
+        $cur=Connexion::selection($act);
         return $cur;
     }
 }
